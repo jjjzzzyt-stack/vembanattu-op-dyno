@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Play Vembanattu-OP Dyno created by Adwaith on Custom Dino. A fun Chrome Dino-style game with custom audio!">
+  <title>Vembanattu-OP Dyno — Custom Dino</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+  <link rel="stylesheet" href="assets/index-lFZlcDO7.css">
+</head>
+
+<body class="offline">
+  <div id="root">
+
+    <!-- ======== Game header (same content as the site's game page) ======== -->
+    <header
+      style="max-width:600px;margin:2.5rem auto 0;padding:0 1.5rem;text-align:center;">
+      <h1
+        style="font-family:'Space Grotesk',Inter,sans-serif;font-size:1.6rem;font-weight:700;color:var(--text-primary);margin:0 0 .4rem;">
+        Vembanattu-OP Dyno
+      </h1>
+      <p style="color:var(--text-secondary);font-size:.9rem;margin:0 0 1rem;">
+        A custom Chrome Dino game by Adwaith — jump, dodge cacti, and beat the high score!
+      </p>
+      <p style="font-size:.85rem;color:var(--text-muted);margin:0 0 1.25rem;">
+        By Adwaith · <a href="https://instagram.com/Am_adwaith_67" target="_blank" rel="noopener"
+          style="color:var(--accent-purple);font-weight:600;text-decoration:none;">@Am_adwaith_67</a>
+      </p>
+      <button class="btn-like" id="likeBtn" type="button" aria-label="Like this game">
+        <svg width="16" height="16" viewBox="0 0 24 24" id="likeHeart" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+          </path>
+        </svg>
+        <span id="likeLabel">Like</span>
+        <span class="like-count">(<span id="likeNum">33</span>)</span>
+      </button>
+    </header>
+
+    <!-- ======== The game (exact DOM contract expected by the site's engine) ======== -->
+    <div style="margin-top:3rem;margin-bottom:1rem;width:100%;">
+      <section id="game-section" aria-label="Playable Dino Game" role="region">
+        <div id="messageBox" class="sendmessage" role="alert">
+          <h2 id="start-text" style="text-align:center;">Press Space or Tap to Start</h2>
+          <div class="niokbutton" role="button" tabindex="0" aria-label="Start Game"></div>
+        </div>
+        <div id="main-frame-error" class="interstitial-wrapper" role="application" aria-label="Game Canvas">
+          <div id="main-content">
+            <div class="icon icon-offline" aria-hidden="true"></div>
+          </div>
+          <div id="offline-resources" class="hidden">
+            <img id="offline-resources-1x" src="assets/default_100_percent/100-offline-sprite.png" alt="1x">
+            <img id="offline-resources-2x" src="assets/default_200_percent/200-offline-sprite.png" alt="2x">
+            <template id="audio-resources">
+              <audio id="offline-sound-press" src="sounds/vembanadu-jump.mp3"></audio>
+              <audio id="offline-sound-hit" src="sounds/vembanadu-game-over.mp3"></audio>
+              <audio id="offline-sound-reached" src="assets/sounds/reached.ogg"></audio>
+            </template>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ======== How to play / about (same sections as the site) ======== -->
+    <section class="seo-article" aria-label="Game Instructions and Details">
+      <h2>How to Play Vembanattu-OP Dyno</h2>
+      <ul>
+        <li><strong>Desktop:</strong> Press <kbd>Space</kbd> or <kbd>Arrow Up</kbd> to jump over obstacles.</li>
+        <li><strong>Mobile:</strong> Tap anywhere on the screen to jump.</li>
+        <li><strong>Duck:</strong> Press <kbd>Arrow Down</kbd> to duck under flying obstacles.</li>
+        <li>Avoid cacti and pterodactyls — try to beat your personal high score!</li>
+        <li>The game works even offline — play anytime, anywhere!</li>
+      </ul>
+      <h2>About Vembanattu-OP Dyno</h2>
+      <p>Vembanattu-OP Dyno is a fun, web-based endless runner game inspired by the beloved Chrome Dino game
+        that appears when your internet connection drops. It is a fully customized version created by Adwaith
+        that brings a unique personality to the classic gameplay. With custom sound effects and a personalized
+        experience, Vembanattu-OP Dyno turns a simple browser game into a memorable experience.</p>
+      <p>The game runs entirely inside your web browser using HTML, CSS, and JavaScript — nothing to download
+        or install. What sets it apart from the standard Chrome Dino experience is the layer of personalization:
+        custom sound effects play when you jump and when you crash, adding personality and humor to every run.</p>
+      <p>This is a local copy of the game served from
+        <a href="https://customdino.webappbazaar.com/game/zzznpi0">customdino.webappbazaar.com</a>, with the exact
+        engine, sprites and sounds used by the original.</p>
+    </section>
+
+    <footer
+      style="text-align:center;color:var(--text-muted);font-size:.8rem;padding:2.5rem 1rem 3rem;">
+      Original game by Adwaith · Custom Dino platform built in Kerala, India
+    </footer>
+  </div>
+
+  <script>
+    // Inject the game engine exactly like the site does:
+    // append /script.js to <body>, then call window.initGame() once loaded
+    // if the engine hasn't already mounted a .runner-container.
+    (function () {
+      var g = document.createElement("script");
+      g.src = "script.js";
+      g.onload = function () {
+        if (!document.querySelector(".runner-container") && window.initGame) {
+          window.initGame();
+        }
+      };
+      document.body.appendChild(g);
+    })();
+
+    // Local like-button behaviour (visual only, same UI as the site).
+    (function () {
+      var btn = document.getElementById("likeBtn");
+      var liked = false;
+      btn.addEventListener("click", function () {
+        liked = !liked;
+        var num = document.getElementById("likeNum");
+        var label = document.getElementById("likeLabel");
+        var heart = document.getElementById("likeHeart");
+        num.textContent = liked ? "34" : "33";
+        label.textContent = liked ? "Liked" : "Like";
+        heart.setAttribute("fill", liked ? "currentColor" : "none");
+        btn.classList.toggle("liked", liked);
+      });
+    })();
+  </script>
+</body>
+
+</html>
